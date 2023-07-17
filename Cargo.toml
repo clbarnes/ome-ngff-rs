@@ -1,0 +1,16 @@
+[package]
+name = "ome-ngff-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = {version="1.0.171", features=["derive"]}
+serde-enum-str = "0.3.2"
+serde_json = "1.0.103"
+thiserror = "1.0.43"
+
+[features]
+v0_4 = []
+v0_5 = []
