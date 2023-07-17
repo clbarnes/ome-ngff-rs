@@ -20,7 +20,7 @@ A rust implementation of the OME-NGFF metadata specification.
   - [x] "coordinateTransformations"
   - [x] "multiscales"
   - [ ] "omero" (transitional)
-  - [ ] "labels"
+  - [x] "labels"
   - [x] "image-label"
   - [x] "plate"
   - [x] "well"

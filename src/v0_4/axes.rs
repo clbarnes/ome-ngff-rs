@@ -59,8 +59,9 @@ pub enum Axis {
     Core(CoreAxis),
     Custom {
         name: String,
-        #[serde(rename = "type")]
+        #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
         axis_type: Option<String>,
+        #[serde(skip_serializing_if = "Option::is_none")]
         unit: Option<String>,
     },
 }

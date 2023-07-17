@@ -11,13 +11,15 @@ pub type Timestamp = u64;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Acquisition {
     id: AcquisitionId,
+    #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<String>,
-    #[serde(rename = "maximumfieldcount")]
+    #[serde(rename = "maximumfieldcount", skip_serializing_if = "Option::is_none")]
     maximum_field_count: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<String>,
-    #[serde(rename = "starttime")]
+    #[serde(rename = "starttime", skip_serializing_if = "Option::is_none")]
     start_time: Option<Timestamp>,
-    #[serde(rename = "endtime")]
+    #[serde(rename = "endtime", skip_serializing_if = "Option::is_none")]
     end_time: Option<Timestamp>,
 }
 
@@ -51,11 +53,15 @@ pub struct PlateWell {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Plate {
+    #[serde(skip_serializing_if = "Option::is_none")]
     acquisitions: Option<Vec<Acquisition>>,
     columns: Vec<Index>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     field_count: Option<usize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<String>,
     rows: Vec<Index>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     version: Option<String>,
     wells: Vec<PlateWell>,
 }

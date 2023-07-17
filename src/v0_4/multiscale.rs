@@ -46,11 +46,13 @@ pub enum InvalidMultiscale {
 pub struct Multiscale {
     axes: Vec<Axis>,
     datasets: Vec<MultiscaleDataset>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     coordinate_transformations: Option<Vec<CoordinateTransformation>>,
     name: Option<Value>,
     version: Option<Value>,
     #[serde(rename = "type")]
     multiscale_type: Option<Value>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     metadata: Option<HashMap<String, Value>>,
 }
 

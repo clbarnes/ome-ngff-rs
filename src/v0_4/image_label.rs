@@ -10,14 +10,19 @@ pub type LabelType = u64;
 pub struct Color {
     #[serde(rename = "label-value")]
     label_value: LabelType,
+    #[serde(skip_serializing_if = "Option::is_none")]
     rgba: Option<[u8; 4]>,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct ImageLabel {
+    #[serde(skip_serializing_if = "Option::is_none")]
     version: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     colors: Option<Vec<Color>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     properties: Option<Vec<Properties>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     source: Option<Source>,
 }
 
@@ -77,6 +82,7 @@ pub struct Properties {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Source {
+    #[serde(skip_serializing_if = "Option::is_none")]
     image: Option<String>,
 }
 

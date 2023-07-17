@@ -179,9 +179,9 @@ impl InvalidCoordinateTransforms {
             ndim = InconsistentDimensionality::check_dim_opts(ndim, c.maybe_ndim())?;
             match c {
                 CoordinateTransformation::Identity => {
-                    return Err(
-                        InvalidCoordinateTransforms::Unsupported("identity".to_owned()),
-                    )
+                    return Err(InvalidCoordinateTransforms::Unsupported(
+                        "identity".to_owned(),
+                    ))
                 }
                 CoordinateTransformation::Translation(_) => {
                     if !has_scale {

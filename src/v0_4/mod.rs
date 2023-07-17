@@ -18,10 +18,14 @@ pub use well::{FieldOfView, InvalidWell, Well};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NgffMetadata {
+    #[serde(skip_serializing_if = "Option::is_none")]
     multiscales: Option<Vec<Multiscale>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     labels: Option<Vec<String>>,
-    #[serde(rename = "image-label")]
+    #[serde(rename = "image-label", skip_serializing_if = "Option::is_none")]
     image_label: Option<ImageLabel>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     plate: Option<Plate>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     well: Option<Well>,
 }

@@ -9,6 +9,7 @@ use super::plate::AcquisitionId;
 
 #[derive(Debug, PartialEq, Eq, Clone, Deserialize, Serialize)]
 pub struct Well {
+    #[serde(skip_serializing_if = "Option::is_none")]
     version: Option<String>,
     images: Vec<FieldOfView>,
 }
@@ -16,6 +17,7 @@ pub struct Well {
 #[derive(Debug, PartialEq, Eq, Clone, Deserialize, Serialize)]
 pub struct FieldOfView {
     path: ZPath,
+    #[serde(skip_serializing_if = "Option::is_none")]
     acquisition: Option<AcquisitionId>,
 }
 
