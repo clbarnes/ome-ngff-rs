@@ -18,7 +18,7 @@ macro_rules! variant_from_data {
     };
 }
 
-pub(crate) use variant_from_data;
+
 
 // macro_rules! transitive_into {
 //     ($target:ty, $intermediate:ty) => {
@@ -52,7 +52,7 @@ impl InconsistentDimensionality {
         let Some(n2) = dim2 else {
             return Ok(dim1);
         };
-        Self::check_dims(n1, n2).map(|n| Some(n))
+        Self::check_dims(n1, n2).map(Some)
     }
 }
 
@@ -77,7 +77,7 @@ pub trait MaybeNdim {
         let Some(n2) = other.maybe_ndim() else {
             return Ok(Some(n1));
         };
-        InconsistentDimensionality::check_dims(n1, n2).map(|n| Some(n))
+        InconsistentDimensionality::check_dims(n1, n2).map(Some)
     }
 
     fn validate_ndim(&self) -> Result<(), InconsistentDimensionality> {
