@@ -141,11 +141,11 @@ impl Transform for CoordinateTransformation {
 
 impl Transform for &[CoordinateTransformation] {
     fn transform(&self, coord: &mut [f64]) -> Result<(), InconsistentDimensionality> {
-        self.iter().map(|t| t.transform(coord)).collect()
+        self.iter().try_for_each(|t| t.transform(coord))
     }
 
     fn rev_transform(&self, coord: &mut [f64]) -> Result<(), InconsistentDimensionality> {
-        self.iter().rev().map(|t| t.transform(coord)).collect()
+        self.iter().rev().try_for_each(|t| t.transform(coord))
     }
 }
 
@@ -170,7 +170,7 @@ impl InvalidCoordinateTransforms {
         mut ndim: Option<usize>,
     ) -> Result<Option<usize>, Self> {
         if require_scale && cs.is_empty() {
-            return Err(InvalidCoordinateTransforms::MissingScale.into());
+            return Err(InvalidCoordinateTransforms::MissingScale);
         }
         let mut has_scale = false;
         let mut has_transl = false;
@@ -180,18 +180,17 @@ impl InvalidCoordinateTransforms {
             match c {
                 CoordinateTransformation::Identity => {
                     return Err(
-                        InvalidCoordinateTransforms::Unsupported("identity".to_owned()).into(),
+                        InvalidCoordinateTransforms::Unsupported("identity".to_owned()),
                     )
                 }
                 CoordinateTransformation::Translation(_) => {
                     if !has_scale {
-                        return Err(InvalidCoordinateTransforms::Order.into());
+                        return Err(InvalidCoordinateTransforms::Order);
                     }
                     if has_transl {
                         return Err(InvalidCoordinateTransforms::Count(
                             "Multiple translations found".to_owned(),
-                        )
-                        .into());
+                        ));
                     } else {
                         has_transl = true;
                     }
@@ -200,8 +199,7 @@ impl InvalidCoordinateTransforms {
                     if has_scale {
                         return Err(InvalidCoordinateTransforms::Count(
                             "Multiple scales found".to_owned(),
-                        )
-                        .into());
+                        ));
                     } else {
                         has_scale = true;
                     }

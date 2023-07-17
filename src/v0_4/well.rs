@@ -65,7 +65,7 @@ mod tests {
     use super::*;
     use serde_json;
 
-    const EXAMPLE1: &'static str = r#"
+    const EXAMPLE1: &str = r#"
     {
         "images": [
             {
@@ -89,7 +89,7 @@ mod tests {
     }
     "#;
 
-    const EXAMPLE2: &'static str = r#"
+    const EXAMPLE2: &str = r#"
     {
         "images": [
             {

@@ -93,7 +93,7 @@ mod tests {
     use super::*;
     use serde_json;
 
-    const EXAMPLE: &'static str = r#"
+    const EXAMPLE: &str = r#"
     {
         "version": "0.4",
         "colors": [
