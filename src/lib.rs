@@ -1,3 +1,4 @@
+#[cfg(any(feature = "v0_4", feature = "v0_5"))]
 mod util;
 
 #[cfg(feature = "v0_4")]

@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 mod axes;
 mod coordinate_transformations;
 mod image_label;
@@ -13,7 +15,6 @@ pub use coordinate_transformations::{
 pub use image_label::{Color, ImageLabel, InvalidImageLabel, Properties, Source};
 pub use multiscale::{InvalidMultiscale, Multiscale, MultiscaleDataset};
 pub use plate::{Acquisition, AcquisitionId, Index, InvalidPlate, Plate, PlateWell};
-use serde::{Deserialize, Serialize};
 pub use well::{FieldOfView, InvalidWell, Well};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
