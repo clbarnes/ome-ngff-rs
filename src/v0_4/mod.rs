@@ -30,3 +30,5 @@ pub struct NgffMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     well: Option<Well>,
 }
+
+// todo: partial deser for when we know which bits to look for
